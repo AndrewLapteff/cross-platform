@@ -9,8 +9,8 @@ public class CalculatePointsTests
     public void CalculateTotalPoints_ShouldReturnCorrectPoints(int input, int expected)
     {
         // Act
-        var dominoSet = new DominoSet();
-        int result = dominoSet.CalculateTotalPoints(input);
+        var dominoSet = new DominoCounter();
+        int result = dominoSet.CalculateTotalDominoPoints(input);
 
         // Assert
         Assert.Equal(expected, result);
@@ -22,8 +22,8 @@ public class CalculatePointsTests
     public void CalculateTotalPoints_ShouldReturnIncorrectPoints(int input, int expected)
     {
         // Act
-        var dominoSet = new DominoSet();
-        int result = dominoSet.CalculateTotalPoints(input);
+        var dominoSet = new DominoCounter();
+        int result = dominoSet.CalculateTotalDominoPoints(input);
 
         // Assert
         Assert.NotEqual(expected, result);

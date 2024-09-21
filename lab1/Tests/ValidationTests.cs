@@ -19,7 +19,6 @@ public class ValidationTests
     public void IsValidNumber_ShouldReturnCorrectValidation(string input, bool expected)
     {
         // Act
-        var dominoSet = new DominoSet();
         var validation = new Validation();
         bool result = validation.IsValidNumber(input);
 

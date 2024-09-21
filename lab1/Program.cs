@@ -11,40 +11,11 @@ namespace lab1
     {
         static void Main(string[] args)
         {
-            string inputFilePath = "input.txt"; 
-            string outputFilePath = "output.txt";  
-            var dominoSet = new DominoSet();
-            var validation = new Validation();
-            int totalPoints = 0;
+            string inputFilePath = "input.txt";
+            string outputFilePath = "output.txt";
 
-            try
-            {
-                string inputContent = File.ReadAllText(inputFilePath).Trim();
-                
-                if (validation.IsValidNumber(inputContent))
-                {
-                    int input = Convert.ToInt32(inputContent);
-                    totalPoints = dominoSet.CalculateTotalPoints(input);
-
-                    string message = $"Результат: {totalPoints}";
-                    Console.WriteLine(message);
-                    File.WriteAllText(outputFilePath, message);
-                }
-                else
-                {
-                    string message = "Файл не має містити символів. N > 0, N < 1000";
-                    Console.WriteLine(message);
-                    File.WriteAllText(outputFilePath, message);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Помилка: {ex.Message}");
-                File.WriteAllText(outputFilePath, "Файл не має містити символів та число має бути менше 1000");
-            }
-
-
-
+            var dominoCounter = new DominoCounter();
+            dominoCounter.CalculateAndWriteDominoPoints(inputFilePath, outputFilePath);
         }
     }
 }

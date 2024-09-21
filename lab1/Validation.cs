@@ -10,6 +10,14 @@ namespace lab1
     {
         public bool IsValidNumber(string input)
         {
+            foreach (char c in input)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+
             if (string.IsNullOrEmpty(input))
             {
                 return false;
@@ -23,14 +31,6 @@ namespace lab1
             if (Convert.ToInt32(input) <= 0)
             {
                 return false;
-            }
-
-            foreach (char c in input)
-            {
-                if (!char.IsDigit(c))
-                {
-                    return false;
-                }
             }
 
             return true;
