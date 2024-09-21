@@ -15,5 +15,5 @@ dotnet run --project .\lab1\lab1.csproj
 ##### Test
 
 ```bash
-dotnet build .\lab1\lab1.csproj
+dotnet test .\lab1\lab1.csproj
 ```

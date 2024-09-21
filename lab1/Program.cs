@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace crossplatform
+namespace lab1
 {
     internal class Program
     {
@@ -20,17 +20,21 @@ namespace crossplatform
             try
             {
                 string inputContent = File.ReadAllText(inputFilePath).Trim();
-                int input = Convert.ToInt32(inputContent);
                 
                 if (validation.IsValidNumber(inputContent))
                 {
+                    int input = Convert.ToInt32(inputContent);
                     totalPoints = dominoSet.CalculateTotalPoints(input);
 
-                    File.WriteAllText(outputFilePath, $"Результат: {totalPoints}");
+                    string message = $"Результат: {totalPoints}";
+                    Console.WriteLine(message);
+                    File.WriteAllText(outputFilePath, message);
                 }
                 else
                 {
-                    File.WriteAllText(outputFilePath, "Файл не має містити символів та число має бути менше 1000");
+                    string message = "Файл не має містити символів. N > 0, N < 1000";
+                    Console.WriteLine(message);
+                    File.WriteAllText(outputFilePath, message);
                 }
             }
             catch (Exception ex)

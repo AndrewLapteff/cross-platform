@@ -1,4 +1,4 @@
-﻿using crossplatform;
+﻿using lab1;
 using Xunit;
 
 public class CalculatePointsTests

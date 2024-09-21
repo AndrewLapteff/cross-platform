@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace crossplatform
+namespace lab1
 {
     internal class DominoSet
     {

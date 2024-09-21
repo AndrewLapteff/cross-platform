@@ -20,6 +20,11 @@ namespace lab1
                 return false;
             }
 
+            if (Convert.ToInt32(input) <= 0)
+            {
+                return false;
+            }
+
             foreach (char c in input)
             {
                 if (!char.IsDigit(c))
