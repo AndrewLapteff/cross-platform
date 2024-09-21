@@ -1,0 +1,15 @@
+<Project DefaultTargets="RunAllProjects" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Define a target to build the lab project -->
+  <Target Name="BuildProjects">
+    <!-- Replace with your actual project path -->
+    <MSBuild Projects=".\lab1\lab1.csproj" Targets="Build" />
+  </Target>
+
+  <!-- Define a target to run the lab project -->
+  <Target Name="RunAllProjects" DependsOnTargets="BuildProjects">
+    <!-- Execute dotnet test and run commands -->
+    <Exec Command="dotnet test .\lab1\lab1.csproj" />
+    <Exec Command="dotnet build .\lab1\lab1.csproj" />
+    <Exec Command="dotnet run --project .\lab1\lab1.csproj" />
+  </Target>
+</Project>
