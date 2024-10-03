@@ -1,46 +1,46 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace lab2
 {
     public class OlympiadScheduler
     {
-        public static int CalculateOlympiadDays(int n, int k, int w, int dw, int s, List<int> weeklyRestDays, int dm, List<int> monthlyRestDays)
+        public int CalculateOlympiadDays(int n, int k, int w, int dw, int s, int[] weeklyRestDays, int dm, int[] monthlyRestDays)
         {
             int[] dp = new int[n];
 
-            // Помітка щотижневих вихідних днів
-            foreach (var day in weeklyRestDays)
+            // Marking weekly rest days
+            for (int j = 0; j < dw; j++)
             {
-                for (int i = (day - s + w) % w; i < n; i += w)
+                int h = weeklyRestDays[j];
+                for (int i = (h - s + w) % w; i < n; i += w)
                 {
-                    dp[i] = -1; // -1 означає вихідний
+                    dp[i] = -1; // Mark rest days as -1
                 }
             }
 
-            // Помітка разових святкових днів
-            foreach (var day in monthlyRestDays)
+            // Marking holidays
+            for (int j = 0; j < dm; j++)
             {
-                if (day - 1 < n) // Перевірка межі
-                {
-                    dp[day - 1] = -1; // -1 означає вихідний
-                }
+                int h = monthlyRestDays[j];
+                dp[h - 1] = -1; // Mark holidays as -1
             }
 
-            // Обчислення кількості доступних днів
-            dp[0] = dp[0] == -1 ? 0 : 1;
+            // Calculate available days after the last rest day
+            dp[0] = dp[0] == -1 ? 0 : 1; // Handle the first day
             for (int i = 1; i < n; i++)
             {
-                dp[i] = dp[i] == -1 ? 0 : dp[i - 1] + 1;
+                if (dp[i] == -1)
+                {
+                    dp[i] = 0; // Day is not available
+                }
+                else
+                {
+                    dp[i] = dp[i - 1] + 1; // Increment the available day counter
+                }
             }
 
-            // Підрахунок кількості періодів довжиною k
-            int validPeriods = dp.Count(e => e >= k);
-
-            return validPeriods;
+            // Count valid periods of length k
+            return dp.Count(e => e >= k); // Count periods using LINQ
         }
     }
 }

@@ -1,69 +1,112 @@
-﻿using System.Collections.Generic;
-using Xunit;
+﻿using Xunit;
 
 namespace lab2.Tests
 {
     public class OlympiadSchedulerTests
     {
         [Fact]
-        public void Test_ExampleCase()
+        public void CalculateOlympiadDays_ValidInput_ShouldReturnCorrectResult()
         {
-            int n = 31, k = 3, w = 7, dw = 1, s = 7;
-            List<int> weeklyRestDays = new List<int> { 7 };
-            int dm = 2;
-            List<int> monthlyRestDays = new List<int> { 1, 9 };
+            // Arrange
+            OlympiadScheduler scheduler = new OlympiadScheduler();
+            int n = 31; // Number of days in the month
+            int k = 3;  // Length of the olympiad
+            int w = 7;  // Number of days in the week
+            int dw = 2; // Number of rest days in the week
+            int s = 1;  // Starting day of the week
+            int[] weeklyRestDays = { 6, 7 }; // Weekend days
+            int dm = 2; // Number of holidays
+            int[] monthlyRestDays = { 10, 20 }; // Holiday days
 
-            int result = OlympiadScheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
-            Assert.Equal(15, result);
+            // Act
+            int result = scheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
+
+            // Assert
+            Assert.Equal(10, result);
         }
 
         [Fact]
-        public void Test_NoRestDays()
+        public void CalculateOlympiadDays_NoRestDays_ShouldReturnFullAvailableDays()
         {
-            int n = 30, k = 5, w = 7, dw = 0, s = 1;
-            List<int> weeklyRestDays = new List<int>();
+            // Arrange
+            OlympiadScheduler scheduler = new OlympiadScheduler();
+            int n = 31;
+            int k = 5;
+            int w = 7;
+            int dw = 0;  // No rest days
+            int s = 1;
+            int[] weeklyRestDays = { };
+            int dm = 0;  // No holidays
+            int[] monthlyRestDays = { };
+
+            // Act
+            int result = scheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
+
+            // Assert
+            Assert.Equal(27, result);
+        }
+
+        [Fact]
+        public void CalculateOlympiadDays_AllDaysAreHolidays_ShouldReturnZero()
+        {
+            // Arrange
+            OlympiadScheduler scheduler = new OlympiadScheduler();
+            int n = 10;
+            int k = 3;
+            int w = 7;
+            int dw = 7;  // All days of the week are rest days
+            int s = 1;
+            int[] weeklyRestDays = { 1, 2, 3, 4, 5, 6, 7 };
             int dm = 0;
-            List<int> monthlyRestDays = new List<int>();
+            int[] monthlyRestDays = { };
 
-            int result = OlympiadScheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
-            Assert.Equal(26, result);
-        }
+            // Act
+            int result = scheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
 
-        [Fact]
-        public void Test_AllDaysUnavailable()
-        {
-            int n = 10, k = 2, w = 7, dw = 2, s = 1;
-            List<int> weeklyRestDays = new List<int> { 1, 7 };
-            int dm = 5;
-            List<int> monthlyRestDays = new List<int> { 2, 3, 4, 5, 6 };
-
-            int result = OlympiadScheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
+            // Assert
             Assert.Equal(0, result);
         }
 
         [Fact]
-        public void Test_LongOlympiad()
+        public void CalculateOlympiadDays_HolidayAtStart_ShouldReturnCorrectResult()
         {
-            int n = 30, k = 30, w = 7, dw = 1, s = 1;
-            List<int> weeklyRestDays = new List<int> { 7 };
-            int dm = 0;
-            List<int> monthlyRestDays = new List<int>();
+            // Arrange
+            OlympiadScheduler scheduler = new OlympiadScheduler();
+            int n = 15;
+            int k = 3;
+            int w = 7;
+            int dw = 2;
+            int s = 2;
+            int[] weeklyRestDays = { 1, 7 };
+            int dm = 1;
+            int[] monthlyRestDays = { 1 };
 
-            int result = OlympiadScheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
-            Assert.Equal(0, result);
+            // Act
+            int result = scheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
+
+            // Assert
+            Assert.Equal(5, result);
         }
 
         [Fact]
-        public void Test_ValidatorFails()
+        public void CalculateOlympiadDays_OnlySinglePeriod_ShouldReturnOne()
         {
-            int n = 31, k = 32, w = 7, dw = 1, s = 7;
-            List<int> weeklyRestDays = new List<int> { 7 };
-            int dm = 2;
-            List<int> monthlyRestDays = new List<int> { 1, 9 };
+            // Arrange
+            OlympiadScheduler scheduler = new OlympiadScheduler();
+            int n = 7;
+            int k = 3;
+            int w = 7;
+            int dw = 1;
+            int s = 1;
+            int[] weeklyRestDays = { 7 };
+            int dm = 1;
+            int[] monthlyRestDays = { 5 };
 
-            Assert.Throws<System.ArgumentException>(() =>
-                InputValidator.ValidateInput(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays)
-            );
+            // Act
+            int result = scheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
+
+            // Assert
+            Assert.Equal(2, result);
         }
     }
 }

@@ -1,40 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace lab2
 {
-    public class InputValidator
+    public class InputOutputHandler
     {
-        public static void ValidateInput(int n, int k, int w, int dw, int s, List<int> weeklyRestDays, int dm, List<int> monthlyRestDays)
+        public (int, int, int, int, int, int[], int, int[]) ReadInput(string inputFilePath)
         {
-            // Валідація n та k
-            if (n < 1 || k > n || n > 100000)
-                throw new ArgumentException("n і k повинні задовольняти умову 1 ≤ k ≤ n ≤ 100000.");
+            var input = File.ReadAllText(inputFilePath)
+                            .Split(new[] { ' ', '\n', '\r', '\t' }, StringSplitOptions.RemoveEmptyEntries)
+                            .Select(int.Parse)
+                            .ToArray();
 
-            // Валідація w і dw
-            if (w < 1 || w > n || dw < 0 || dw > w)
-                throw new ArgumentException("w і dw повинні задовольняти умову 1 ≤ w ≤ n і 0 ≤ dw ≤ w.");
+            // Check if we have at least 5 elements
+            if (input.Length < 5)
+                throw new ArgumentException("Некорректные данные во входном файле.");
 
-            // Валідація s
-            if (s < 1 || s > w)
-                throw new ArgumentException("s повинно задовольняти умову 1 ≤ s ≤ w.");
+            // Read the first block of data
+            int n = input[0]; // Number of days in the month
+            int k = input[1]; // Length of the olympiad
+            int w = input[2]; // Number of days in the week
+            int dw = input[3]; // Number of rest days in the week
+            int s = input[4]; // Start day of the week
 
-            // Валідація щотижневих вихідних днів
-            foreach (var day in weeklyRestDays)
+            // Ensure there is enough data for the rest days
+            int index = 5;
+            if (input.Length < index + dw)
+                throw new ArgumentException("Недостаточно данных для выходных дней.");
+
+            // Read weekly rest days
+            int[] weeklyRestDays = new int[dw];
+            for (int j = 0; j < dw; j++)
             {
-                if (day < 1 || day > w)
-                    throw new ArgumentException("Кожен день щотижневого вихідного повинен задовольняти умову 1 ≤ день ≤ w.");
+                weeklyRestDays[j] = input[index++];
             }
 
-            // Валідація разових святкових днів
-            foreach (var day in monthlyRestDays)
+            // Read the number of holiday days
+            if (index >= input.Length)
+                throw new ArgumentException("Некорректные данные для праздничных дней.");
+
+            int dm = input[index++];
+
+            if (dm < 0 || index + dm > input.Length)
+                throw new ArgumentException("Некорректные данные для праздничных дней.");
+
+            // Read monthly rest days
+            int[] monthlyRestDays = new int[dm];
+            for (int j = 0; j < dm; j++)
             {
-                if (day < 1 || day > n)
-                    throw new ArgumentException("Кожен день разового святкового повинен задовольняти умову 1 ≤ день ≤ n.");
+                monthlyRestDays[j] = input[index++];
             }
+
+            return (n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
+        }
+
+        public void WriteOutput(string outputFilePath, int result)
+        {
+            File.WriteAllText(outputFilePath, result.ToString());
+            Console.WriteLine($"Результат записан в {outputFilePath}");
         }
     }
 }
