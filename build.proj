@@ -1,34 +1,24 @@
 <Project>
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <!-- Dynamic property to choose which project to build/run/test -->
+    <SelectedProject Condition="'$(lab)' == ''">1</SelectedProject>
   </PropertyGroup>
 
   <ItemGroup>
-    <Lab1Project Include="lab1\lab1.csproj" />
-    <Lab2Project Include="lab2\lab2.csproj" />
+    <MainProjectFile Include="lab$(lab)\lab$(lab).csproj" />
   </ItemGroup>
 
-  <Target Name="BuildLab1">
-    <MSBuild Projects="@(Lab1Project)" Targets="Restore;Build" />
+  <!-- Build target similar to test and run -->
+  <Target Name="build">
+    <Exec Command="dotnet build &quot;@(MainProjectFile)&quot;" />
   </Target>
 
-  <Target Name="TestLab1">
-    <Exec Command="dotnet test &quot;@(Lab1Project)&quot; --logger &quot;console;verbosity=detailed&quot;" />
+  <Target Name="test">
+    <Exec Command="dotnet test &quot;@(MainProjectFile)&quot; --logger &quot;console;verbosity=detailed&quot;" />
   </Target>
 
-  <Target Name="RunLab1">
-    <Exec Command="dotnet run --project &quot;@(Lab1Project)&quot;" />
-  </Target>
-
-  <Target Name="BuildLab2">
-    <MSBuild Projects="@(Lab2Project)" Targets="Restore;Build" />
-  </Target>
-
-  <Target Name="TestLab2">
-    <Exec Command="dotnet test &quot;@(Lab2Project)&quot; --logger &quot;console;verbosity=detailed&quot;" />
-  </Target>
-
-  <Target Name="RunLab2">
-    <Exec Command="dotnet run --project &quot;@(Lab2Project)&quot;" />
+  <Target Name="run">
+    <Exec Command="dotnet run --project &quot;@(MainProjectFile)&quot;" />
   </Target>
 </Project>

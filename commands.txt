@@ -1,0 +1,13 @@
+dotnet new console -n projname					   To create a project
+dotnet sln add projname/projname.csproj    To add the project to the solution
+
+add: <GenerateProgramFile>false</GenerateProgramFile>
+into <PropertyGroup>
+
+add:
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+		<PackageReference Include="xunit" Version="2.5.0" />
+		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0" />
+	</ItemGroup>
+into <Project>

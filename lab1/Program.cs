@@ -11,8 +11,8 @@ namespace lab1
     {
         static void Main(string[] args)
         {
-            string inputFilePath = "input.txt";
-            string outputFilePath = "output.txt";
+            string inputFilePath = "input1.txt";
+            string outputFilePath = "output1.txt";
 
             var dominoCounter = new DominoCounter();
             dominoCounter.CalculateAndWriteDominoPoints(inputFilePath, outputFilePath);

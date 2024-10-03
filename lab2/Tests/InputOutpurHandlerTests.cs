@@ -2,7 +2,8 @@
 using System.IO;
 using System;
 
-namespace lab2.Tests {
+namespace lab2.Tests 
+{
     public class InputOutputHandlerTests
     {
         [Fact]

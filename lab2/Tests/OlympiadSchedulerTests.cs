@@ -9,14 +9,14 @@ namespace lab2.Tests
         {
             // Arrange
             OlympiadScheduler scheduler = new OlympiadScheduler();
-            int n = 31; // Number of days in the month
-            int k = 3;  // Length of the olympiad
-            int w = 7;  // Number of days in the week
-            int dw = 2; // Number of rest days in the week
-            int s = 1;  // Starting day of the week
-            int[] weeklyRestDays = { 6, 7 }; // Weekend days
-            int dm = 2; // Number of holidays
-            int[] monthlyRestDays = { 10, 20 }; // Holiday days
+            int n = 31;
+            int k = 3;
+            int w = 7;
+            int dw = 2;
+            int s = 1;
+            int[] weeklyRestDays = { 6, 7 };
+            int dm = 2;
+            int[] monthlyRestDays = { 10, 20 };
 
             // Act
             int result = scheduler.CalculateOlympiadDays(n, k, w, dw, s, weeklyRestDays, dm, monthlyRestDays);
@@ -33,10 +33,10 @@ namespace lab2.Tests
             int n = 31;
             int k = 5;
             int w = 7;
-            int dw = 0;  // No rest days
+            int dw = 0;
             int s = 1;
             int[] weeklyRestDays = { };
-            int dm = 0;  // No holidays
+            int dm = 0;
             int[] monthlyRestDays = { };
 
             // Act
@@ -54,7 +54,7 @@ namespace lab2.Tests
             int n = 10;
             int k = 3;
             int w = 7;
-            int dw = 7;  // All days of the week are rest days
+            int dw = 7;
             int s = 1;
             int[] weeklyRestDays = { 1, 2, 3, 4, 5, 6, 7 };
             int dm = 0;
