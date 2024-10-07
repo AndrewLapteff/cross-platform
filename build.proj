@@ -2,23 +2,26 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <!-- Dynamic property to choose which project to build/run/test -->
-    <SelectedProject Condition="'$(lab)' == ''">1</SelectedProject>
+    <Solution Condition="'$(Solution)' == ''">Lab1</Solution>
   </PropertyGroup>
 
   <ItemGroup>
-    <MainProjectFile Include="lab$(lab)\lab$(lab).csproj" />
+    <MainProjectFile Include="$(Solution)\$(Solution).csproj" />
   </ItemGroup>
 
-  <!-- Build target similar to test and run -->
-  <Target Name="build">
+  <!-- Build target -->
+  <Target Name="Build">
     <Exec Command="dotnet build &quot;@(MainProjectFile)&quot;" />
   </Target>
 
-  <Target Name="test">
+  <!-- Test target -->
+  <Target Name="Test">
     <Exec Command="dotnet test &quot;@(MainProjectFile)&quot; --logger &quot;console;verbosity=detailed&quot;" />
   </Target>
 
-  <Target Name="run">
+  <!-- Run target -->
+  <Target Name="Run">
     <Exec Command="dotnet run --project &quot;@(MainProjectFile)&quot;" />
   </Target>
 </Project>
+  
