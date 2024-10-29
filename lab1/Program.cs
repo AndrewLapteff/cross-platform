@@ -14,6 +14,19 @@ namespace lab1
             string inputFilePath = "input1.txt";
             string outputFilePath = "output1.txt";
 
+            // Parse command-line arguments
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i] == "-i" && i + 1 < args.Length)
+                {
+                    inputFilePath = args[i + 1];
+                }
+                else if (args[i] == "-o" && i + 1 < args.Length)
+                {
+                    outputFilePath = args[i + 1];
+                }
+            }
+
             var dominoCounter = new DominoCounter();
             dominoCounter.CalculateAndWriteDominoPoints(inputFilePath, outputFilePath);
         }
