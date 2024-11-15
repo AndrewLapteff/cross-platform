@@ -4,16 +4,28 @@ namespace lab2
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             try
             {
                 string inputFilePath = "input2.txt";
                 string outputFilePath = "output2.txt";
 
+                for (int i = 0; i < args.Length; i++)
+                {
+                    if ((args[i] == "-i" || args[i] == "--input") && i + 1 < args.Length)
+                    {
+                        inputFilePath = args[i + 1];
+                    }
+                    if ((args[i] == "-o" || args[i] == "--output") && i + 1 < args.Length)
+                    {
+                        outputFilePath = args[i + 1];
+                    }
+                }
+
                 if (!System.IO.File.Exists(inputFilePath))
                 {
-                    Console.WriteLine("Файл input2.txt не знайдено.");
+                    Console.WriteLine($"File {inputFilePath} not found.");
                     return;
                 }
 
@@ -28,7 +40,7 @@ namespace lab2
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Помилка: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
     }

@@ -76,3 +76,11 @@ msbuild build.proj /t:build /p:lab=3
 | №   | INPUT.TXT                                               | OUTPUT.TXT |
 | --- | ------------------------------------------------------- | ---------- |
 | 1   | 4 4 <br> 0 0 1 0 <br> 0 0 1 0 <br> 0 1 0 0 <br> 1 0 0 1 | 2          |
+
+## Варіант 1 (Lab4)
+
+Команда має виконуватись в директорії з build.proj файлом.
+
+```bash
+.\lab4\LabManager\bin\Debug\net8.0\LabManager.exe run 1 -i input1.txt -o output1.txt
+```

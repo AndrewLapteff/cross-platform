@@ -2,7 +2,8 @@
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<!-- Dynamic property to choose which project to build/run/test -->
-		<Solution Condition="'$(Solution)' == ''">Lab1</Solution>
+		<Lab Condition="'$(Lab)' == ''">1</Lab>
+		<Solution>Lab$(Lab)</Solution>
 		<!-- Optional input and output file properties -->
 		<InputFile Condition="'$(InputFile)' == ''">input.txt</InputFile>
 		<OutputFile Condition="'$(OutputFile)' == ''">output.txt</OutputFile>
