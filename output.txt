@@ -1,1 +1,1 @@
-Total domino points: 12
+Invalid input. Max domino point should be > 0 and < 1000
