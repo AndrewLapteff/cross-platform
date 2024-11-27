@@ -1,19 +1,21 @@
-﻿namespace lab3 
+﻿using lab3;
+using System;
+
+class Program
 {
-    class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        try
         {
-            // Чтение входных данных через InputOutput класс
-            InputOutput io = new InputOutput();
-            int[,] grid = io.ReadInput("input3.txt");
+            // Вызываем статический метод решения из класса PaperCuttingSolver
+            int result = PaperCuttingSolver.Solve("input3.txt", "output3.txt");
 
-            // Подсчет частей
-            Grid gridObj = new Grid(grid);
-            int result = gridObj.CountParts();
-
-            // Запись результата
-            io.WriteOutput("output3.txt", result);
+            // Дополнительный вывод в консоль (необязательно)
+            Console.WriteLine($"Result: {result}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
         }
     }
 }
