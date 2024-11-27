@@ -1,4 +1,5 @@
 ﻿using lab3;
+using Lab3ClassLibrary;
 using System;
 
 class Program
@@ -7,10 +8,8 @@ class Program
     {
         try
         {
-            // Вызываем статический метод решения из класса PaperCuttingSolver
             int result = PaperCuttingSolver.Solve("input3.txt", "output3.txt");
 
-            // Дополнительный вывод в консоль (необязательно)
             Console.WriteLine($"Result: {result}");
         }
         catch (Exception ex)

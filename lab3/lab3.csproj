@@ -5,13 +5,19 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-		<GenerateProgramFile>false</GenerateProgramFile>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<StartupObject>Program</StartupObject>
   </PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Lab3ClassLibrary" Version="1.0.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
 		<PackageReference Include="xunit" Version="2.5.0" />
 		<PackageReference Include="xunit.runner.visualstudio" Version="2.5.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Lab3ClassLibrary\Lab3ClassLibrary.csproj" />
 	</ItemGroup>
 
 </Project>

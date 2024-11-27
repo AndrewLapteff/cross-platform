@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>ALibrary</PackageId>
+    <Authors>Andrew</Authors>
+    <Description>Lab3 PaperCuttingSolver library.</Description>
+	</PropertyGroup>
+
+</Project>

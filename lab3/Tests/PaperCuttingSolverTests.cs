@@ -1,6 +1,7 @@
 ﻿using System;
 using Xunit;
 using System.Reflection;
+using Lab3ClassLibrary;
 
 public class PaperCuttingSolverMemoryTests
 {

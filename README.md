@@ -61,6 +61,40 @@ msbuild build.proj /t:build /p:lab=3
 
 # Lab3 (Варіант 1)
 
+## Завдання для всіх варіантів
+
+#### Послідовність дій:
+
+1. Для початку треба було скачати nuget i додати до змінних середовища шлях до папки з nuget, щоб nuget працював в cmd/powershell.
+
+2. Створюємо новий проект бібліотеки класів:
+
+```bash
+dotnet new classlib -n Lab3ClassLibrary
+```
+
+3. Додаємо код
+
+4. Пакуємо проект в NuGet пакет, після чого він з'явиться в папці bin\Debug або bin\Release:
+
+```bash
+dotnet pack
+```
+
+5. Додаємо пакет в локальний репозиторій:
+
+```bash
+nuget add ALibrary.1.0.0.nupkg -source C:\NugetLocal
+```
+
+6. В Visual Studio заходимо в **Tools** > **Package Manager Settings** > **NuGet Package Manager** > **Package Sources** і додаємо новий локальний репозиторій.
+
+7. Встановлюємо пакет через **Visual Studio** або **NuGet Package Manager**:
+
+```bash
+dotnet add Lab3/Lab3.csproj package ALibrary --version <version_number>
+```
+
 Вася Пупкін взяв листочок у клітку і почав його різати по певних лініях. На запасному листку такого ж розміру він зафарбував клітки, якими проходили лінії. Василь Васильович так захопився цим заняттям, що заплутався скільки частин від аркуша в нього залишилося. Ваше завдання знайти це число.
 
 ## Вхідні дані
@@ -91,6 +125,4 @@ msbuild build.proj /t:build /p:lab=3
 https://localhost:7165
 ```
 
-
 https://github.com/user-attachments/assets/60c748cd-56e9-4204-aa3b-4ef2b65e7fc7
-

@@ -1,6 +1,6 @@
-﻿using lab3;
-using System;
-using System.IO;
+﻿using System.IO;
+
+namespace Lab3ClassLibrary;
 
 public class PaperCuttingSolver
 {

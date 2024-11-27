@@ -15,13 +15,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lab4", "lab4", "{C4AD4532-E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabManager", "lab4\LabManager\LabManager.csproj", "{B24BAD61-4314-40C9-86D6-73105F1D1D85}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3ClassLibrary", "Lab3ClassLibrary\Lab3ClassLibrary.csproj", "{0887F398-955D-42ED-82A9-3F8FFA9B2212}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{7CF005EA-B041-46AF-9046-ADF4F44EC265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,6 +43,13 @@ Global
 		{B24BAD61-4314-40C9-86D6-73105F1D1D85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B24BAD61-4314-40C9-86D6-73105F1D1D85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B24BAD61-4314-40C9-86D6-73105F1D1D85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0887F398-955D-42ED-82A9-3F8FFA9B2212}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0887F398-955D-42ED-82A9-3F8FFA9B2212}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0887F398-955D-42ED-82A9-3F8FFA9B2212}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0887F398-955D-42ED-82A9-3F8FFA9B2212}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{B24BAD61-4314-40C9-86D6-73105F1D1D85} = {C4AD4532-EB04-446C-B036-66EB9DB8127A}
