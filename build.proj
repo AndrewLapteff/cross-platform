@@ -1,34 +1,31 @@
 <Project>
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
-		<!-- Dynamic property to choose which project to build/run/test -->
 		<Lab Condition="'$(Lab)' == ''">1</Lab>
 		<Solution>Lab$(Lab)</Solution>
-		<!-- Optional input and output file properties -->
-		<InputFile Condition="'$(InputFile)' == ''">input.txt</InputFile>
-		<OutputFile Condition="'$(OutputFile)' == ''">output.txt</OutputFile>
+		<Path Condition="'$(Path)' == ''">$(MSBuildProjectDirectory)</Path>
+		<InputFile Condition="'$(InputFile)' == ''">$(Path)\input.txt</InputFile>
+		<OutputFile Condition="'$(OutputFile)' == ''">$(Path)\output.txt</OutputFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<MainProjectFile Include="$(Solution)\$(Solution).csproj" />
 	</ItemGroup>
 
-	<!-- Build target -->
 	<Target Name="Build">
 		<Exec Command="dotnet build &quot;@(MainProjectFile)&quot;" />
 	</Target>
 
-	<!-- Test target -->
 	<Target Name="Test">
 		<Exec Command="dotnet test &quot;@(MainProjectFile)&quot; --logger &quot;console;verbosity=detailed&quot;" />
 	</Target>
 
-	<!-- Run target -->
 	<Target Name="Run">
 		<PropertyGroup>
 			<RunCommand>dotnet run --project &quot;@(MainProjectFile)&quot;</RunCommand>
 			<RunCommand Condition="'$(InputFile)' != ''">$(RunCommand) -- -i &quot;$(InputFile)&quot;</RunCommand>
 			<RunCommand Condition="'$(OutputFile)' != ''">$(RunCommand) -o &quot;$(OutputFile)&quot;</RunCommand>
+			<RunCommand Condition="'$(Path)' != ''">$(RunCommand) -p &quot;$(Path)&quot;</RunCommand>
 		</PropertyGroup>
 		<Exec Command="$(RunCommand)" />
 	</Target>
